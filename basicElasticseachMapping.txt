@@ -1,0 +1,30 @@
+PUT _template/packets
+{
+  "template": "packets-*",
+  "settings": {
+    "number_of_shards": 4
+  },
+  "mappings": {
+    "pcap_file": {
+      "properties": {
+        "timestamp": {
+          "type": "date",
+          "format": "epoch_millis"
+        },
+        "layers.frame_time": {
+          "type": "date",
+          "format": "MMM dd, yyyy HH:mm:ss.SSSSSSSSS z"
+        },
+        "layers.wlan_radio_channel": {
+          "type": "integer"
+        },
+        "layers.wlan_radio_frequency": {
+          "type": "integer"
+        },
+        "layers.wlan_radio_signal_dbm": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}
