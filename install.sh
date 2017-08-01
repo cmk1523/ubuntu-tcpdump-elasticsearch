@@ -2,5 +2,8 @@ sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get install tshark
 
-# bulk ingest in to Elasticsearch
-#curl -s -XPOST http://bos-01:9200/_bulk --data-binary "@tcpdump.pcap.elastic.bulk.json"
+#sudo mergecap -w merge.pcap -F pcap tcp.pcap*
+#sudo ivstools --convert merge.pcap merge.ivs
+#wpaclean merge.handshakes merge.pcap
+# OR...
+#tshark -r merge.pcap -2R "eapol || wlan.fc.type_subtype == 0x08" -w merge.handshakes
