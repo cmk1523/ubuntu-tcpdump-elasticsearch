@@ -1,10 +1,8 @@
 #!/bin/bash
-#file="$1"
+# Description: converts a .cap in to: .ivs, .handshakes and elastic search bulk. 
+# Example: ./runner.sh test.cap
 
-for f in "$@"
-do
-../pcapToElasticBulkJson.sh $f > d.json;
-curl -s -XPOST http://bos-01:9200/_bulk --data-binary @d.json;
-clear;
-rm -f $f;
-done;
+file="$1"
+sudo ivstools --convert "$file" "$file".ivs
+sudo wpaclean "$file".handshakes "$file"
+./pcapToElasticBulkJson.sh "$file" > "$file".elastic
